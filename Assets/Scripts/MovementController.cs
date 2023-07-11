@@ -7,6 +7,7 @@ public class CharacterController : MonoBehaviour
     public float speed = 5f;
     [SerializeField] private Rigidbody2D rig2D;
     [SerializeField] private Animator anim;
+    [SerializeField] private FieldOfView fov;
 
     private Vector2 targetPosition;
     private Vector2 direction;
@@ -22,6 +23,11 @@ public class CharacterController : MonoBehaviour
     {
         MovePlayer();
         changeFlipXSprite.FlipOrientationPlayer(transform, direction);
+    }
+
+    private void Update()
+    {
+        fov.SetOrigin(transform.position);
     }
 
     private void MovePlayer()
