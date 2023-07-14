@@ -19,13 +19,13 @@ public class FieldOfView : MonoBehaviour
 
     void Awake()
     {
-        _mesh = new Mesh();
+        _mesh = _mesh != null ? _mesh : new Mesh();
         _mesh.Clear();
         GetComponent<MeshFilter>().mesh = _mesh;
         origin = Vector3.zero;
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         GenerateMesh();
     }
@@ -35,7 +35,7 @@ public class FieldOfView : MonoBehaviour
         float anguloActual = anguloInicial;
         float incrementoAngulo = fov / numberAristas;
 
-        vertices = new Vector3[numberAristas + 2];
+        vertices = new Vector3[numberAristas + 1];
         triangulos = new int[numberAristas * 3];
 
         vertices[0] = origin;
